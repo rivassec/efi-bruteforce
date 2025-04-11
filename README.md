@@ -27,3 +27,71 @@ Some MacBook models (primarily pre-2018) allow unlimited EFI password attempts a
    ```bash
    git clone https://github.com/rivassec/efi-bruteforce
    cd efi-bruteforce
+   ```
+
+2. Open the `.ino` file in the Arduino IDE with Teensyduino enabled.
+
+3. Flash the code to your Teensy 3.2.
+
+4. Plug the Teensy into the locked MacBook and power it on.
+
+5. The Teensy will begin simulating EFI password inputs using PIN-style sequences.
+
+> 🕒 Brute-force speed and feasibility vary by device and firmware version.
+
+---
+
+## 📁 Repo Structure
+
+```
+efi-bruteforce/
+├── efi_bruteforce.ino       # Main Arduino/Teensy script
+├── README.md
+└── docs/
+    └── wiring_diagram.png   # [Optional] Add your own visual guides here
+```
+
+---
+
+## ⚠️ Legal & Ethical Notice
+
+This tool is intended for:
+- Security research
+- Digital forensics
+- Personal device recovery
+
+**Unauthorized use is a violation of law.**  
+Only deploy against hardware you own or are explicitly authorized to access.
+
+---
+
+## 🧭 DevSecOps Perspective
+
+While not a traditional software security project, this repo demonstrates:
+
+- Hardware-based attack automation
+- Brute-force detection testing methodology
+- Cross-domain awareness (firmware, USB HID, and physical security)
+
+For modern DevSecOps engineers, low-level tooling insight supports broader incident response and security architecture awareness.
+
+---
+
+## 🔄 Roadmap (Optional)
+
+- [ ] Add delay tuning to bypass boot timers
+- [ ] Modularize input sequence logic
+- [ ] Include rotary encoder / display feedback
+- [ ] Document MacBook compatibility matrix
+
+---
+
+## 📜 License
+
+This project is released under the [MIT License](LICENSE).
+
+---
+
+## 📸 Demo (Optional)
+
+> Coming soon: a short clip of the Teensy cycling through PINs on a locked MacBook Air.
