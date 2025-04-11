@@ -1,14 +1,29 @@
-These Teensyduino sketches (for Teensy embeded boards) and shell scripts are tools to bruteforce EFI or iCloud locks. For a bit of background behind these tools checkout:
+# 🧬 efi-bruteforce
 
-* For EFI Lock: http://orvtech.com/atacar-efi-pin-macbook-pro-en.html
-* For iCloud lock: http://orvtech.com/ataque-fuerza-bruta-pin-icloud-en.html
+Automated brute-force tool for EFI firmware passwords on legacy MacBook models.  
+Powered by a Teensy microcontroller emulating USB keyboard input.
 
+---
 
-|
+## ⚙️ Overview
 
+Some MacBook models (primarily pre-2018) allow unlimited EFI password attempts at boot time. This project uses a programmable HID device (Teensy) to simulate a human entering PIN guesses, automating the process in hardware.
 
-##Traducción a castellano:
-Estos sketches de Teensyduino para el sistema embebido Teensy y son herramientas para hacer ataques de fuerza bruta al bloqueo de EFI y de iCloud, para tener un poco mas de información e historia sobre el tema, puedes visitar:
+---
 
-* Para atacar el EFI: http://orvtech.com/atacar-efi-pin-macbook-pro-en.html
-* Para desbloquear el de iCloud: http://orvtech.com/ataque-fuerza-bruta-pin-icloud-en.html
+## 🔩 Requirements
+
+- 🧠 **Basic hardware hacking familiarity**
+- 🧱 **Teensy 3.2** or compatible microcontroller (e.g., Teensy LC)
+- 🔌 **Micro USB cable**
+- 💻 Target MacBook with EFI password lock (pre-T2 chip, e.g., 2012–2017)
+- 🧰 [Teensyduino](https://www.pjrc.com/teensy/teensyduino.html) installed and configured
+
+---
+
+## 🚀 Setup
+
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/rivassec/efi-bruteforce
+   cd efi-bruteforce
