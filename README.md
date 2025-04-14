@@ -107,3 +107,8 @@ It documents:
 
 This script emerged from that exploratory work and was refined through open source contributions and testing.
 
+
+
+### 📰 Recognition
+
+This project was featured on Hackaday in 2013 for its exploration of EFI PIN brute-force mechanics on locked Apple hardware. While the original goal was personal data recovery, the write-up sparked discussion in the hardware and security research community.
