@@ -1,6 +1,6 @@
 # 🧬 efi-bruteforce
 
-Automated brute-force tool for EFI firmware passwords on legacy MacBook models.  
+Automated brute-force tool for EFI firmware passwords on legacy MacBook models.
 Powered by a Teensy microcontroller emulating USB keyboard input.
 
 ---
@@ -95,3 +95,15 @@ This project is released under the [MIT License](LICENSE).
 ## 📸 Demo (Optional)
 
 > Coming soon: a short clip of the Teensy cycling through PINs on a locked MacBook Air.
+
+### 📚 Background
+
+This project was inspired by a real-world recovery scenario involving a locked MacBook Pro. The original research detailed the motivation, hardware decisions, and methodology behind this automation.
+
+It documents:
+- Why Teensy was chosen over Arduino
+- How firmware behavior influenced delay tuning
+- Ethical motivations for use on personally owned hardware
+
+This script emerged from that exploratory work and was refined through open source contributions and testing.
+
