@@ -111,4 +111,4 @@ This script emerged from that exploratory work and was refined through open sour
 
 ### 📰 Recognition
 
-This project was featured on Hackaday in 2013 for its exploration of EFI PIN brute-force mechanics on locked Apple hardware. While the original goal was personal data recovery, the write-up sparked discussion in the hardware and security research community.
+This project was featured on [Hackaday](https://hackaday.com/2013/02/26/mac-efi-pin-lock-brute-force-attack-unsuccessful/) in 2013 for its exploration of EFI PIN brute-force mechanics on locked Apple hardware. While the original goal was personal data recovery, the write-up sparked discussion in the hardware and security research community.
