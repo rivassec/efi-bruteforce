@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    name: shellcheck (efi_range_tracker.sh)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Show shellcheck version
+        run: shellcheck --version
+
+      - name: Run shellcheck
+        run: shellcheck efi_range_tracker.sh
+
+  arduino-lint:
+    name: arduino-lint (sketches)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # The repo keeps two independent Teensy USB-HID sketches at the root.
+      # A valid Arduino sketch must live in a folder whose name matches its
+      # primary .ino file, so stage each sketch into its own matching folder
+      # before linting (otherwise arduino-lint reports SS001 name mismatch).
+      - name: Stage sketches into matching folders
+        run: |
+          mkdir -p staging/efi_attack staging/icloud_attack
+          cp efi_attack.ino staging/efi_attack/efi_attack.ino
+          cp icloud_attack.ino staging/icloud_attack/icloud_attack.ino
+
+      # arduino-lint checks sketch structure without needing a board core.
+      # A full Teensy compile would require the Teensyduino core, which is
+      # awkward and fragile to install in CI, so we lint structure here.
+      - name: Lint Arduino sketches
+        uses: arduino/arduino-lint-action@9a3603836c75e41753e531167395edeb90ba5dae # v3.0.0
+        with:
+          path: ./staging
+          recursive: true
+          project-type: sketch
+          compliance: specification
