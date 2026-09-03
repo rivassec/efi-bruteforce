@@ -1,5 +1,5 @@
-#/bin/bash
-while true do
+#!/bin/bash
+while true; do
   clear echo
   date start=`date +%s -d "Wed Jan 16 17:46:00"`
   current=`date +%s`
