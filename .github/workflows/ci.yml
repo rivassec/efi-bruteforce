@@ -15,17 +15,16 @@ permissions:
 
 jobs:
   shellcheck:
-    name: shellcheck (efi_range_tracker.sh)
+    name: shellcheck -S error (efi_range_tracker.sh)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Show shellcheck version
-        run: shellcheck --version
+      - name: Show shellcheck -S error version
+        run: shellcheck -S error --version
 
-      - name: Run shellcheck
-        run: shellcheck efi_range_tracker.sh
+      - name: Run shellcheck -S error run: shellcheck -S error efi_range_tracker.sh
 
   arduino-lint:
     name: arduino-lint (sketches)
